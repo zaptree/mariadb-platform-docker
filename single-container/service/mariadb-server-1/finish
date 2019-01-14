@@ -1,0 +1,2 @@
+#!/bin/sh
+rm -f /var/lock/subsys/mariadb-server-1

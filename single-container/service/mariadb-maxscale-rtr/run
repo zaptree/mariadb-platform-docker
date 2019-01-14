@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+(mkdir -p /var/lock/subsys && touch /var/lock/subsys/mariadb-maxscale-rtr)
+/usr/bin/maxscale --user=maxscale --config=/etc/mariadb-maxscale-rtr.cnf

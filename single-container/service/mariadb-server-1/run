@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+(mkdir -p /var/lock/subsys && touch /var/lock/subsys/mariadb-server-1)
+/usr/local/mysql/bin/mysqld --defaults-file=/etc/mariadb-server-1.cnf

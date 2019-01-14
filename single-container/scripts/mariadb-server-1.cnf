@@ -1,0 +1,22 @@
+#
+# These groups are read by MariaDB server.
+# Use it for options that only the server (but not clients) should see
+#
+# See the examples of server my.cnf files in /usr/share/mysql/
+#
+
+# this is read by the standalone daemon and embedded servers
+[mysqld]
+datadir=/var/lib/mysql/1/
+socket=/var/lib/mysql/1/mysql.sock
+pid-file=/var/run/mysqld/mysqld1.pid
+binlog_format=row
+binlog_row_image=full
+server-id=1
+log_slave_updates=1#
+gtid_strict_mode=1
+port=33061
+log-error=/var/log/mysqld1.log
+user=mysql2
+session_track_system_variables=last_gtid
+symbolic-links=0
