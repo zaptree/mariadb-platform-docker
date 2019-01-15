@@ -103,6 +103,17 @@ RUN yum -y install maxscale-2.*.rpm
 RUN rm /maxscale-2.*.rpm
 COPY scripts/mariadb-maxscale-rtr.cnf /etc/mariadb-maxscale-rtr.cnf
 RUN chown mysql /etc/mariadb-maxscale-rtr.cnf
+COPY service/mariadb-maxscale-rtr/run /etc/service/mariadb-maxscale-rtr/run
+RUN chmod 755 /etc/service/mariadb-maxscale-rtr/run
+COPY service/mariadb-maxscale-rtr/finish /etc/service/mariadb-maxscale-rtr/finish
+RUN chmod 755 /etc/service/mariadb-maxscale-rtr/finish
+
+COPY scripts/mariadb-maxscale-cdc.cnf /etc/mariadb-maxscale-cdc.cnf
+RUN chown maxscale /etc/mariadb-maxscale-cdc.cnf
+COPY service/mariadb-maxscale-cdc/run /etc/service/mariadb-maxscale-cdc/run
+RUN chmod 755 /etc/service/mariadb-maxscale-cdc/run
+COPY service/mariadb-maxscale-cdc/finish /etc/service/mariadb-maxscale-cdc/finish
+RUN chmod 755 /etc/service/mariadb-maxscale-cdc/finish
 
 ## Install the Columnstore Bulk Write SDK C/C++ (required by Columnstore CDC Connector)
 RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-columnstore-api/1.2.2/centos/x86_64/7/mariadb-columnstore-api-1.2.2-1-x86_64-centos7-cpp.rpm
@@ -111,6 +122,23 @@ RUN rm mariadb-columnstore-api-1.2.2-1-x86_64-centos7-cpp.rpm
 
 ## Install Columnstore CDC Connector
 RUN wget https://downloads.mariadb.com/MaxScale/2.2.18/centos/7/x86_64/maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
+RUN yum install -y epel-release
+RUN yum install -y libuv libxml2 snappy python34
 RUN yum -y install maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
 RUN rm maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
+RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-streaming-data-adapters/cdc-data-adapter/1.2.2/centos-7/mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
+RUN yum install -y mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
+RUN rm mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
+
+RUN mkdir /var/log/maxscale-cdc/
+RUN chown maxscale /var/log/maxscale-cdc/
+RUN mkdir /var/run/maxscale-cdc/
+RUN chown maxscale /var/run/maxscale-cdc/
+RUN mkdir /var/lib/maxscale-cdc/
+RUN chown maxscale /var/lib/maxscale-cdc/
+RUN mkdir /var/cache/maxscale-cdc/
+RUN chown maxscale /var/cache/maxscale-cdc/
+
+RUN /home/mysql2/scripts/mariadb-cdc-init.sh
+
 

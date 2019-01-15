@@ -10,10 +10,12 @@
 datadir=/var/lib/mysql/2/
 socket=/var/lib/mysql/2/mysql.sock
 pid-file=/var/run/mysqld/mysqld2.pid
+log-bin=/var/lib/mysql/1/binlog
 binlog_format=row
 binlog_row_image=full
+log-basename=mariadb-server-2
 server-id=2
-log_slave_updates=1#
+log_slave_updates=1
 gtid_strict_mode=1
 port=33062
 log-error=/var/log/mysqld2.log

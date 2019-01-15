@@ -1,3 +1,5 @@
+flush privileges;
+
 create user 'maxuser'@'%' identified by 'maxpwd';
 grant SELECT on mysql.user to 'maxuser'@'%';
 GRANT SELECT ON mysql.db TO 'maxuser'@'%';
@@ -20,14 +22,39 @@ GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON *.* TO 'maxuser'@'localho
 GRANT REPLICATION CLIENT on *.* to 'maxuser'@'localhost';
 GRANT REPLICATION SLAVE ON *.* TO 'maxuser'@'localhost';
 
+create user 'rpluser'@'%' identified by 'rplpwd';
+GRANT REPLICATION CLIENT on *.* to 'rpluser'@'%';
+GRANT REPLICATION SLAVE ON *.* TO 'rpluser'@'%';
 
+create user 'rpluser'@'localhost' identified by 'rplpwd';
+GRANT REPLICATION CLIENT on *.* to 'rpluser'@'localhost';
+GRANT REPLICATION SLAVE ON *.* TO 'rpluser'@'localhost';
+
+CREATE USER 'cdcuser'@'%' IDENTIFIED BY 'cdcpwd';
+GRANT REPLICATION SLAVE ON *.* TO 'cdcuser'@'%';
+GRANT SELECT ON mysql.user TO 'cdcuser'@'%';
+GRANT SELECT ON mysql.db TO 'cdcuser'@'%';
+GRANT SELECT ON mysql.tables_priv TO 'cdcuser'@'%';
+GRANT SELECT ON mysql.roles_mapping TO 'cdcuser'@'%';
+GRANT SHOW DATABASES ON *.* TO 'cdcuser'@'%';
+GRANT REPLICATION CLIENT ON *.* TO 'cdcuser'@'%';
+
+CREATE USER 'cdcuser'@'localhost' IDENTIFIED BY 'cdcpwd';
+GRANT REPLICATION SLAVE ON *.* TO 'cdcuser'@'localhost';
+GRANT SELECT ON mysql.user TO 'cdcuser'@'localhost';
+GRANT SELECT ON mysql.db TO 'cdcuser'@'localhost';
+GRANT SELECT ON mysql.tables_priv TO 'cdcuser'@'localhost';
+GRANT SELECT ON mysql.roles_mapping TO 'cdcuser'@'localhost';
+GRANT SHOW DATABASES ON *.* TO 'cdcuser'@'localhost';
+GRANT REPLICATION CLIENT ON *.* TO 'cdcuser'@'localhost';
 
 RESET MASTER;
+RESET SLAVE;
 
 DELIMITER |
 IF @@server_id  > 1 THEN
   CHANGE MASTER TO
-    MASTER_HOST='localhost',
+    MASTER_HOST='127.0.0.1',
     MASTER_USER='maxuser',
     MASTER_PASSWORD='maxpwd',
     MASTER_PORT=33061,
@@ -36,3 +63,4 @@ IF @@server_id  > 1 THEN
   START SLAVE;
 END IF |
 DELIMITER ;
+

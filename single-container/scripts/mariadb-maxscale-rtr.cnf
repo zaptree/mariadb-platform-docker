@@ -18,23 +18,26 @@ port=3306
 
 [server1]
 type=server
+server_id=1
 address=127.0.0.1
 port=33061
 protocol=MariaDBBackend
 
 [server2]
 type=server
+server_id=2
 address=127.0.0.1
 port=33062
 protocol=MariaDBBackend
 
 [server3]
 type=server
+server_id=3
 address=127.0.0.1
 port=33063
 protocol=MariaDBBackend
 
-[TheMonitor]
+[mdbmonitor]
 type=monitor
 module=mariadbmon
 servers=server1,server2,server3

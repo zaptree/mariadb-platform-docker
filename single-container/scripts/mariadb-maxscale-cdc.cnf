@@ -1,0 +1,64 @@
+[maxscale]
+threads=2
+logdir=/var/log/maxscale-cdc
+piddir=/var/run/maxscale-cdc
+datadir=/var/lib/maxscale-cdc
+cachedir=/var/cache/maxscale-cdc
+admin_port=8990
+
+[server1]
+type=server
+server_id=1
+address=127.0.0.1
+port=33061
+protocol=MariaDBBackend
+
+[server2]
+type=server
+server_id=2
+address=127.0.0.1
+port=33062
+protocol=MariaDBBackend
+
+[server3]
+type=server
+server_id=3
+address=127.0.0.1
+port=33063
+protocol=MariaDBBackend
+
+[replication-router]
+type                    = service
+router                  = binlogrouter
+user                    = rpluser
+password                = rplpwd
+server_id               = 1
+binlogdir               = /var/lib/maxscale-cdc
+
+[replication-listener]
+type     = listener
+service  = replication-router
+protocol = MySQLClient
+port     = 6605
+
+[avro-router]
+type    = service
+router  = avrorouter
+source  = replication-router
+avrodir = /var/lib/maxscale-cdc
+
+[avro-listener]
+type     = listener
+service  = avro-router
+protocol = cdc
+port     = 4001
+
+[CLI]
+type=service
+router=cli
+
+[CLI Listener]
+type=listener
+service=CLI
+protocol=maxscaled
+socket=/var/run/maxscale-cdc/maxadmin.sock

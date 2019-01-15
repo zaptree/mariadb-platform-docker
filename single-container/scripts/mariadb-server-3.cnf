@@ -10,10 +10,12 @@
 datadir=/var/lib/mysql/3/
 socket=/var/lib/mysql/3/mysql.sock
 pid-file=/var/run/mysqld/mysqld3.pid
+log-bin=/var/lib/mysql/1/binlog
 binlog_format=row
 binlog_row_image=full
+log-basename=mariadb-server-3
 server-id=3
-log_slave_updates=1#
+log_slave_updates=1
 gtid_strict_mode=1
 port=33063
 log-error=/var/log/mysqld3.log
