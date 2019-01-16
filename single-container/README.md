@@ -31,7 +31,7 @@ This section will receive many updates to explain the inner workings of the imag
 
 ### Architecture
 
-[!Single Container Architecture Diagram](images/single-container-architecture.png)
+![Single Container Architecture Diagram](images/single-container-architecture.png)
 
 ## Issues, Comments and Suggestions
 
