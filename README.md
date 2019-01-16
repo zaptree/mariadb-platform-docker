@@ -1,35 +1,7 @@
-# MariaDB Platform Single Container Image
-## Overview
+# MariaDB Platform Docker
 
-This project combines all of the elements of MariaDB platform into a single container.  This provides an easy way to get your familiar with the many parts of Platform without having to manually setup and configure the various components. This single container image is intended for test and development environments, though can serve as a template for production deployments.
+This project contains tools, utilities, scripts and Dockerfiles for setting up MariaDB Platform in docker containers.  MariaDB Platform combines MariaDB Server transactional capabilities, MariaDB Columnstore analytical capabilities, and the security and intelligent routing of MariaDB Maxscale into a single unified product with the flexibility to meet a wide range of requirements. As an example, see the Knowledgebase section on supporting [Hybrid Transactional Analytical Application Processing (HTAP) with MariaDB Platform](https://mariadb.com/kb/en/library/sample-platform-x3-implementation-for-transactional-and-analytical-workloads/).
 
-## Instructions
+With a wide range of possible topologies for MariaDB Plaform installations into Docker (and Kubernetes) environments, the initial demand has been to provide a simple way for users to experience MariaDB Platform, excercise its functionality and to begin developing applications.  This demand has driven the release of the **MariaDB Platform Single Container Image**. Follow [these instructions](single-container/README.md) to get started with the image.
 
-### Download
-You have a couple options for downloading and running the MariaDB Platform Single Container Image.
 
-#### Docker command line via Docker Hub
-Provided your local docker environment is configured to pull from Docker Hub
-
-`docker pull mariadb/platform_single:x3-1.0`
-
-#### Clone github Repository and build Image
-
-`git clone git@github.com:mariadb-corporation/mariadb-platform-docker.git`
-
-`cd mariadb-platform-docker/single-container`
-
-`docker build . -t mariadb/platform_single:x3-1.0`
-
-### Running Image
-This section will receive many updates to explain the inner workings of the image.  For now
-
-`docker run --name mariadb-platform mariadb/platform_single:x3-1.0`
-
-`docker exec -it mariadb-platform /bin/bash`
-
-## Issues, Comments and Suggestions
-
-Please use the github issue feature to provide any and all feedback.
-
-## Errata and Future Enhancements
