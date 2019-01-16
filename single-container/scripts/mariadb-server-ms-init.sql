@@ -25,10 +25,24 @@ GRANT REPLICATION SLAVE ON *.* TO 'maxuser'@'localhost';
 create user 'rpluser'@'%' identified by 'rplpwd';
 GRANT REPLICATION CLIENT on *.* to 'rpluser'@'%';
 GRANT REPLICATION SLAVE ON *.* TO 'rpluser'@'%';
+grant SELECT on mysql.user to 'rpluser'@'%';
+GRANT SELECT ON mysql.db TO 'rpluser'@'%';
+GRANT SELECT ON mysql.tables_priv TO 'rpluser'@'%';
+GRANT SUPER ON *.* TO 'rpluser'@'%';
+grant RELOAD on *.* to 'rpluser'@'%';
+GRANT SHOW DATABASES ON *.* TO 'rpluser'@'%';
+GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON *.* TO 'rpluser'@'%';
 
 create user 'rpluser'@'localhost' identified by 'rplpwd';
 GRANT REPLICATION CLIENT on *.* to 'rpluser'@'localhost';
 GRANT REPLICATION SLAVE ON *.* TO 'rpluser'@'localhost';
+grant SELECT on mysql.user to 'rpluser'@'localhost';
+GRANT SELECT ON mysql.db TO 'rpluser'@'localhost';
+GRANT SELECT ON mysql.tables_priv TO 'rpluser'@'localhost';
+GRANT SUPER ON *.* TO 'rpluser'@'localhost';
+grant RELOAD on *.* to 'rpluser'@'localhost';
+GRANT SHOW DATABASES ON *.* TO 'rpluser'@'localhost';
+GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON *.* TO 'rpluser'@'localhost';
 
 CREATE USER 'cdcuser'@'%' IDENTIFIED BY 'cdcpwd';
 GRANT REPLICATION SLAVE ON *.* TO 'cdcuser'@'%';

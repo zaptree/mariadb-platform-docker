@@ -33,8 +33,9 @@ router                  = binlogrouter
 user                    = rpluser
 password                = rplpwd
 server_id               = 11
-binlogdir               = /var/lib/maxscale-cdc
+binlogdir               = /var/lib/maxscale-cdc/binlogs
 master_id               = 1
+mariadb10_master_gtid   = off
 
 
 [replication-listener]
@@ -47,7 +48,10 @@ port     = 6605
 type    = service
 router  = avrorouter
 source  = replication-router
-avrodir = /var/lib/maxscale-cdc
+avrodir = /var/lib/maxscale-cdc/avro-files
+binlogdir = /var/lib/maxscale-cdc/binlogs
+filestem = mariadb-server-1-bin
+start_index = 1
 
 [avro-listener]
 type     = listener
