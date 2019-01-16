@@ -30,6 +30,7 @@ This section will receive many updates to explain the inner workings of the imag
 `docker exec -it mariadb-platform /bin/bash`
 
 ### Architecture
+
 [!Single Container Architecture Diagram](images/single-container-architecture.png)
 
 ## Issues, Comments and Suggestions
