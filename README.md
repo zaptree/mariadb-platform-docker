@@ -19,12 +19,12 @@ Provided your local docker environment is configured to pull from Docker Hub
 
 `cd mariadb-platform-docker/single-container`
 
-`docker build . -t mariadb/platform-single:x3-1.0`
+`docker build . -t mariadb/platform_single:x3-1.0`
 
 ### Running Image
 This section will receive many updates to explain the inner workings of the image.  For now
 
-`docker run --name mariadb-platform mariadb/platform-single:x3-1.0`
+`docker run --name mariadb-platform mariadb/platform_single:x3-1.0`
 
 `docker exec -it mariadb-platform /bin/bash`
 
