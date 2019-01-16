@@ -32,8 +32,10 @@ type                    = service
 router                  = binlogrouter
 user                    = rpluser
 password                = rplpwd
-server_id               = 1
+server_id               = 11
 binlogdir               = /var/lib/maxscale-cdc
+master_id               = 1
+
 
 [replication-listener]
 type     = listener

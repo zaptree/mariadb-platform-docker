@@ -45,6 +45,12 @@ RUN sudo rm -R /usr/local/mariadb-10.3.12-linux-x86_64/lib/plugin/ha_connect.so
 RUN sudo rm -R /usr/local/mariadb-10.3.12-linux-x86_64/lib/plugin/ha_mroonga.so
 RUN sudo rm -R /usr/local/mariadb-10.3.12-linux-x86_64/lib/plugin/ha_tokudb.so
 
+## Stage software for later installation
+RUN wget https://downloads.mariadb.com/MaxScale/2.3.2/centos/7/x86_64/maxscale-2.3.2-1.centos.7.x86_64.rpm
+RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-columnstore-api/1.2.2/centos/x86_64/7/mariadb-columnstore-api-1.2.2-1-x86_64-centos7-cpp.rpm
+RUN wget https://downloads.mariadb.com/MaxScale/2.2.18/centos/7/x86_64/maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
+RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-streaming-data-adapters/cdc-data-adapter/1.2.2/centos-7/mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
+
 ## Configuration changes to get MariaDB Server to run as a 3-node Master/Slave cluster using the
 ## mysqld_multi feature
 
@@ -76,6 +82,7 @@ RUN chgrp mysql2 /var/run/mysqld
 
 ## Initialize the 3 node MariaDB Server cluster
 RUN sed -i 's/secure_path = \/sbin:\/bin:\/usr\/sbin:\/usr\/bin/secure_path = \/sbin:\/bin:\/usr\/sbin:\/usr\/bin:\/usr\/local\/mysql\/bin/g' /etc/sudoers
+RUN echo "INIT INIT INIT"
 RUN /home/mysql2/scripts/mariadb-server-ms-init.sh
 
 ## Copy service scripts that will cause MariaDB Server cluster to start on container startup
@@ -98,7 +105,6 @@ COPY service/mariadb-server-3/finish /etc/service/mariadb-server-3/finish
 RUN chmod 755 /etc/service/mariadb-server-3/finish
 
 ## Install Maxscale
-RUN wget https://downloads.mariadb.com/MaxScale/2.3.2/centos/7/x86_64/maxscale-2.3.2-1.centos.7.x86_64.rpm
 RUN yum -y install maxscale-2.*.rpm
 RUN rm /maxscale-2.*.rpm
 COPY scripts/mariadb-maxscale-rtr.cnf /etc/mariadb-maxscale-rtr.cnf
@@ -116,17 +122,14 @@ COPY service/mariadb-maxscale-cdc/finish /etc/service/mariadb-maxscale-cdc/finis
 RUN chmod 755 /etc/service/mariadb-maxscale-cdc/finish
 
 ## Install the Columnstore Bulk Write SDK C/C++ (required by Columnstore CDC Connector)
-RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-columnstore-api/1.2.2/centos/x86_64/7/mariadb-columnstore-api-1.2.2-1-x86_64-centos7-cpp.rpm
 RUN yum -y install mariadb-columnstore-api-1.2.2-1-x86_64-centos7-cpp.rpm
 RUN rm mariadb-columnstore-api-1.2.2-1-x86_64-centos7-cpp.rpm
 
 ## Install Columnstore CDC Connector
-RUN wget https://downloads.mariadb.com/MaxScale/2.2.18/centos/7/x86_64/maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
 RUN yum install -y epel-release
 RUN yum install -y libuv libxml2 snappy python34
 RUN yum -y install maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
 RUN rm maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
-RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-streaming-data-adapters/cdc-data-adapter/1.2.2/centos-7/mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
 RUN yum install -y mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
 RUN rm mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
 
