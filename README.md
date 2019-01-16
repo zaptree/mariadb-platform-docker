@@ -5,15 +5,8 @@ This project combines all of the elements of MariaDB platform into a single cont
 
 ## Instructions
 
-
 ### Download
-You have several options for downloading and running the MariaDB Platform Single Container Image.
-#### Download from MariaDB.com
-Download the image file at mariadb.com/downloads
-
-This is a saved image file and can be added to your local images with the following command
-
-`docker load < mariadb_platform_single_x3-10.tar`
+You have a couple options for downloading and running the MariaDB Platform Single Container Image.
 
 #### Docker command line via Docker Hub
 Provided your local docker environment is configured to pull from Docker Hub
