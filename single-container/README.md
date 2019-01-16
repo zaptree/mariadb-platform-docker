@@ -30,6 +30,7 @@ This section will receive many updates to explain the inner workings of the imag
 `docker exec -it mariadb-platform /bin/bash`
 
 ### Architecture
+The image has been setup to allow testing of hybrid transactional analytical processing (HTAP), and the basic components are outlines in [this](https://mariadb.com/kb/en/library/sample-platform-x3-implementation-for-transactional-and-analytical-workloads/) knowledgebase article. The major differences include running a three member MariaDB Server Master-Slave cluster (instead of four member), and a simple one UM and one PM MariaDB Columnstore setup.  (The image is still big, even having opted for this trimmed down approach).
 
 ![Single Container Architecture Diagram](images/single-container-architecture.png)
 
@@ -38,3 +39,5 @@ This section will receive many updates to explain the inner workings of the imag
 Please use the github issue feature to provide any and all feedback.
 
 ## Errata and Future Enhancements
+
+This document needs to include a deeper discussion of ports, log directories, sv services and more.
