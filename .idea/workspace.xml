@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bfb55f5-1849-4ae6-b02f-bab87f5cb59f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single-container/scripts/mariadb-maxscale-cdc.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/single-container/scripts/mariadb-maxscale-cdc.cnf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single-container/scripts/mariadb-server-ms-init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/single-container/scripts/mariadb-server-ms-init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,14 +57,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="Gfm" />
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="90">
-                <caret line="3" column="317" selection-start-line="3" selection-start-column="317" selection-end-line="3" selection-end-column="317" />
+              <first_editor relative-caret-position="375">
+                <caret line="20" selection-start-line="20" selection-end-line="20" />
               </first_editor>
+              <second_editor>
+                <markdownNavigatorState />
+              </second_editor>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/single-container/README.md">
+          <provider editor-type-id="Gfm" />
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor />
               <second_editor>
                 <markdownNavigatorState />
               </second_editor>
@@ -130,6 +140,11 @@
               <item name="mariadb-platform-docker" type="b2602c69:ProjectViewProjectNode" />
               <item name="mariadb-platform-docker" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="mariadb-platform-docker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mariadb-platform-docker" type="462c0819:PsiDirectoryNode" />
+              <item name="single-container" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -140,7 +155,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547636460244" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547641635449" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -167,16 +182,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547503117477</updated>
-      <workItem from="1547503118944" duration="28237000" />
+      <workItem from="1547503118944" duration="28791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28237000" />
+    <option name="totallyTimeSpent" value="28791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="653" y="23" width="1751" height="1371" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -342,8 +356,8 @@
       <provider editor-type-id="Gfm" />
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="90">
-            <caret line="3" column="317" selection-start-line="3" selection-start-column="317" selection-end-line="3" selection-end-column="317" />
+          <first_editor relative-caret-position="375">
+            <caret line="20" selection-start-line="20" selection-end-line="20" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
