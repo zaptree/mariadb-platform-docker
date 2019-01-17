@@ -51,7 +51,7 @@ sv up mariadb-maxscale-rtr
 sv restart mariadb-maxscale-rtr
 ```
 
-Between inspecting services, editing config files, and restarting services, you have the means to reconfigure the MariaDB Platform to match your requirements.
+Between inspecting services, editing config files, and restarting services, you have the means to reconfigure MariaDB Platform to match your requirements.
 
 ### MariaDB Columnstore
 To be completed.
@@ -74,4 +74,6 @@ Please use the github issue feature to provide any and all feedback.
 
 ## Errata and Future Enhancements
 
-This document needs to include a deeper discussion of ports, log directories, sv services and more.
+- README needs to include detailed sections on each component
+- Document procedure for publishing port(s) to host
+- MariaDB MXS Adapter should run as a service
