@@ -32,6 +32,10 @@ While it is possible to expose Maxsacle RTR to your host machine and issue SQL t
 
 `docker exec -it mariadb-platform /bin/bash`
 
+If you do want to expose the Maxscale RTR port to your host machine, you need to publish the port with the -p flag when running the image.
+
+`docker run -p 3306:33061/tcp --name mariadb-platform mariadb/platform_single:x3-1.0`
+
 ### Architecture
 The image has been setup to allow testing of hybrid transactional analytical processing (HTAP), and the basic components are outlines in [this](https://mariadb.com/kb/en/library/sample-platform-x3-implementation-for-transactional-and-analytical-workloads/) knowledgebase article. The major differences include running a three member MariaDB Server Master-Slave cluster (instead of four member), and a simple one UM and one PM MariaDB Columnstore setup.  (The image is still big, even having opted for this trimmed down approach).
 
@@ -54,19 +58,54 @@ sv restart mariadb-maxscale-rtr
 Between inspecting services, editing config files, and restarting services, you have the means to reconfigure MariaDB Platform to match your requirements.
 
 ### MariaDB Columnstore
-To be completed.
+
+| Item | Value |
+| --- | --- |
+| O/S user | `root` |
+| Install location | `/usr/local/mariadb/columnstore` |
+| Service definition | `/etc/service/columnstore` |
+| Config file | `/usr/local/mariadb/columnstore/mysql` |
+| Log file directory | `/var/log/mariadb/columnstore` |
 
 ### MariaDB Server Master/Slave
-To be completed.
+
+| Item | Value |
+| --- | --- |
+| O/S user | `mysql2` |
+| Install location | `/usr/local/mysql/` |
+| Service definitions | `/etc/service/mariadb-server-1  /etc/service/mariadb-server-2  /etc/service/mariadb-server-3`  |
+| Config files | `/etc/mariadb-server-1.cnf  mariadb-server-2.cnf  mariadb-server-3.cnf` |
+| Log files | `/var/log/mysqld1.log  /var/log/mysqld2.log  /var/log/mysqld3.log` |
 
 ### MariaDB Maxscale Router
-To be completed.
+
+| Item | Value |
+| --- | --- |
+| O/S user | `maxscale` |
+| Install location | `/usr/bin` |
+| Service definition | `/etc/service/mariadb-maxscale-rtr` |
+| Config file | `/etc/mariadb-maxscale-rtr.cnf` |
+| Log file(s) | `/var/log/maxscale/maxscale.log` |
 
 ### MariaDB Maxscale CDC
-To be completed.
+
+| Item | Value |
+| --- | --- |
+| O/S user | `maxscale` |
+| Install location | `/usr/bin` |
+| Service definition | `/etc/service/mariadb-maxscale-cdc` |
+| Config file | `/etc/mariadb-maxscale-cdc.cnf` |
+| Log file(s) | `/var/log/maxscale-cdc/maxscale.log` |
 
 ### MariaDB MXS Adapter
-To be completed.
+
+| Item | Value |
+| --- | --- |
+| O/S user | `root` |
+| Install location | `/usr/bin` |
+| Service definition | not service enabled |
+| Config file | per run |
+| Log file(s) | per run |
 
 ## Issues, Comments and Suggestions
 
@@ -74,6 +113,4 @@ Please use the github issue feature to provide any and all feedback.
 
 ## Errata and Future Enhancements
 
-- README needs to include detailed sections on each component
-- Document procedure for publishing port(s) to host
 - MariaDB MXS Adapter should run as a service
