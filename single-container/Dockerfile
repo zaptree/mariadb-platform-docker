@@ -2,6 +2,7 @@ FROM mariadb/columnstore:1.2.2
 
 ## Change Columnstore port to 4306
 RUN sed -i 's/postConfigure -n/postConfigure -port 4306 -n/g' /usr/sbin/dbinit
+COPY scripts/reconfig-cs-crossengine-port.sh /docker-entrypoint-initdb.d
 
 ## Create home directory for mysql, which is the user executing Columnstore processes
 RUN mkdir /home/mysql
@@ -51,8 +52,7 @@ RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-columnstore-api/1.2
 RUN wget https://downloads.mariadb.com/MaxScale/2.2.18/centos/7/x86_64/maxscale-cdc-connector-2.2.18-1.centos.7.x86_64.rpm
 RUN wget https://downloads.mariadb.com/Data-Adapters/mariadb-streaming-data-adapters/cdc-data-adapter/1.2.2/centos-7/mariadb-columnstore-maxscale-cdc-adapters-1.2.2-1-x86_64-centos7.rpm
 
-## Configuration changes to get MariaDB Server to run as a 3-node Master/Slave cluster using the
-## mysqld_multi feature
+## Configuration changes to get MariaDB Server to run as a 3-node Master/Slave
 
 RUN mkdir -p /var/lib/mysql/{1,2,3}
 RUN chown -R mysql2 /var/lib/mysql
