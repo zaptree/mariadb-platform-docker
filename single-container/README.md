@@ -14,7 +14,7 @@ You have a couple options for downloading and running the MariaDB Platform Singl
 #### Docker command line via Docker Hub
 Provided your local docker environment is configured to pull from Docker Hub
 
-`docker pull mariadb/platform_single:x3-1.0`
+`docker pull mariadb/platform_single:latest`
 
 #### Clone github Repository and build Image
 
@@ -22,11 +22,11 @@ Provided your local docker environment is configured to pull from Docker Hub
 
 `cd mariadb-platform-docker/single-container`
 
-`docker build . -t mariadb/platform_single:x3-1.0`
+`docker build . -t mariadb/platform_single:latest`
 
 ### Running Image
 
-`docker run --name mariadb-platform mariadb/platform_single:x3-1.0`
+`docker run --name mariadb-platform mariadb/platform_single:latest`
 
 While it is possible to expose Maxsacle RTR to your host machine and issue SQL to the image, opening a shell prompt on the image will allow you explore MariaDB Platform.  You will also use this shell access to reconfigure components as required for your testing.
 
@@ -34,7 +34,7 @@ While it is possible to expose Maxsacle RTR to your host machine and issue SQL t
 
 If you do want to expose the Maxscale RTR port to your host machine, you need to publish the port with the -p flag when running the image.
 
-`docker run -p 3306:33061/tcp --name mariadb-platform mariadb/platform_single:x3-1.0`
+`docker run -p 3306:33061/tcp --name mariadb-platform mariadb/platform_single:latest`
 
 ### Architecture
 The image has been setup to allow testing of hybrid transactional analytical processing (HTAP), and the basic components are outlines in [this](https://mariadb.com/kb/en/library/sample-platform-x3-implementation-for-transactional-and-analytical-workloads/) knowledgebase article. The major differences include running a three member MariaDB Server Master-Slave cluster (instead of four member), and a simple one UM and one PM MariaDB Columnstore setup.  (The image is still big, even having opted for this trimmed down approach).
