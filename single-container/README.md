@@ -107,10 +107,44 @@ Between inspecting services, editing config files, and restarting services, you 
 | Config file | per run |
 | Log file(s) | per run |
 
+The MXS adpater is responsible for moving data from the AVRO files into Columnstore.  It is not configured to run as a service because the exact configurtion (schema, table, etc...) will depend on your use case.  For example, to stream data from the t6 table in the test schema, you can launch the following command.
+
+`mxs_adapter -c /usr/local/mariadb/columnstore/etc/Columnstore.xml -u cdcuser -p cdcpwd -h 127.0.0.1 -P 4001 -r 2 -d -n -z test t6`
+
+## Connecting to Services
+With many service runnign inside this single image, it is easy to accidentally connect to the wrong service.  When connecting from within the image, be sure to connect using the host 127.0.0.1, and the appropriate port number.
+
+For example, if you want to connect directly to the master using the mysql client:
+
+`mysql --host=127.0.0.1 -P 33061`
+
+Forgetting the host option will end up ignoring the Port option and will connect to the Columnstore UM which has established a socket at the standard location:
+
+`mysql -P 33061`
+
+You can see from the initial message from mysql that you are connected to Columnstore:
+
+```
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 19
+Server version: 10.3.11-MariaDB-log Columnstore 1.2.2-1
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+```
+
+Of course, most connections should be to the maxscale router process:
+
+`mysql --host=127.0.0.1 -P 3306 --user=maxuser --password='maxpwd'`
+
 ## Issues, Comments and Suggestions
 
 Please use the github issue feature to provide any and all feedback.
 
 ## Errata and Future Enhancements
 
-- MariaDB MXS Adapter should run as a service
+## Release History
+
+- X3-1.0 Initial release
+- x3-1.1 Fixes to avro router configuration and Columnstore.xml for MXS Adapter
