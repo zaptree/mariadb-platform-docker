@@ -28,7 +28,7 @@ Provided your local docker environment is configured to pull from Docker Hub
 
 `docker run --name mariadb-platform mariadb/platform_single:latest`
 
-While it is possible to expose Maxsacle RTR to your host machine and issue SQL to the image, opening a shell prompt on the image will allow you explore MariaDB Platform.  You will also use this shell access to reconfigure components as required for your testing.
+While it is possible to expose Maxscale RTR to your host machine and issue SQL to the image, opening a shell prompt on the image will allow you explore MariaDB Platform.  You will also use this shell access to reconfigure components as required for your testing.
 
 `docker exec -it mariadb-platform /bin/bash`
 
